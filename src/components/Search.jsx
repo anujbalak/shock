@@ -2,7 +2,7 @@ import { Component, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-    flex: 2 70%;
+    flex: 2 5 60%;
     
 `
 
@@ -11,6 +11,7 @@ const SearchElement = styled.input`
     padding: 0.2em;
     border: 1px solid rgb(var(--text-color));
     border-radius: 5px;
+    width: 100%;
 `
 
 class Search extends Component {

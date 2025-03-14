@@ -1,5 +1,6 @@
 import App from "../App";
 import ErrorElement from "../error/error";
+import Cart from "../web/Cart"
 
 const routes = [
     {
@@ -7,6 +8,10 @@ const routes = [
         element: <App />,
         errorElement: <ErrorElement />,
     },
+    {
+        path: "cart",
+        element: <Cart />,
+    }
 ]
 
 export default routes;
