@@ -12,6 +12,13 @@ const Top = styled.div`
   background-size: cover;
 `
 
+const FestivalSeason = styled.div`
+  
+`
+const Categories = styled.div`
+  
+`
+
 function App() {
 
   return (
@@ -19,6 +26,12 @@ function App() {
       <Top>
         <Header />
       </Top>
+      <FestivalSeason>
+
+      </FestivalSeason>
+      <Categories>
+        
+      </Categories>
     </Homepage>
   )
 }
