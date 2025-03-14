@@ -7,6 +7,7 @@ import CartButton from "../components/CartBtn"
 const HeaderContainer = styled.div`
     background-color: rgb(253, 211, 171, 60%);
     backdrop-filter: blur(10px);
+    height: max-content;
 `
 
 const HeaderComponent = styled.header`
@@ -16,8 +17,8 @@ const HeaderComponent = styled.header`
     align-items: center;
     max-width: 100%;
     justify-content: center;
-    height: 4em;
     margin: 0 1em;
+    height: 4em;
 `
 
 class Header extends Component {

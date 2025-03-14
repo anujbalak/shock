@@ -1,6 +1,7 @@
 import App from "../App";
 import ErrorElement from "../error/error";
 import Cart from "../web/Cart"
+import Shopping from "../web/Shopping"
 
 const routes = [
     {
@@ -11,6 +12,10 @@ const routes = [
     {
         path: "cart",
         element: <Cart />,
+    },
+    {
+        path: "shopping",
+        element: <Shopping />
     }
 ]
 
