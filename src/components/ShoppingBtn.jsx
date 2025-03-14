@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = styled.button`
+export const Button = styled.button`
     background-color: transparent;
     border: none;
     padding: 0.4em 1em;

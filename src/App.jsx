@@ -6,6 +6,7 @@ import festivalImg from "/background/festival.jpg";
 import ShoppingBtn from "./components/ShoppingBtn";
 import Timer from "./components/Timer";
 import { useEffect, useState } from "react";
+import Category from "./components/Category";
 
 
 const Homepage = styled.div`
@@ -48,8 +49,23 @@ const FestivalText = styled.p`
   margin-right: 2em;
 `
 
+const CategoriesContainer = styled.section`
+  background-color: rgb(233, 231, 218);
+  padding: 1em 0;
+`
 const Categories = styled.div`
-  
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2em;
+  row-gap: 1em;
+  margin: 1em;
+  align-items: center;
+  justify-content: space-evenly;
+`
+
+const CtgrText = styled.h3`
+  margin-left: 1em;
+  font-size: 1.6rem;
 `
 
 function App() {
@@ -63,7 +79,9 @@ function App() {
 
       return response.json()
     })
-    .then(response => console.log(response))
+    .then(response => setCategories(response))
+    .catch(error => console.error(error))
+
   }, [])
 
   return (
@@ -83,9 +101,18 @@ function App() {
           <Timer />
         </ShoppingPageContainer>
       </FestivalSeason>
-      <Categories>
-
-      </Categories>
+      <CategoriesContainer>
+        <CtgrText>Explore By Categories</CtgrText>
+        {categories &&
+          <Categories>
+            {categories.map(category => {
+              return (
+                <Category name={category.name} key={category.slug} page="home" url={category.url}/>
+              )
+            })}
+          </Categories>       
+        }
+      </CategoriesContainer>
     </Homepage>
   )
 }
