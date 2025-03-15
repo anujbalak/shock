@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 export const Button = styled.button`
     background-color: transparent;
@@ -21,11 +22,14 @@ export const Button = styled.button`
 `
 
 class ShoppingBtn extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return(
             <Link to="shopping">
-                <Button>
+                <Button data-testid={this.props.tesid}>
                     Shop ➞
                 </Button>
             </Link>
@@ -33,4 +37,11 @@ class ShoppingBtn extends Component {
     }
 }
 
+ShoppingBtn.PropTypes = {
+    testid: PropTypes.string,
+}
+
+ShoppingBtn.defaultProps = {
+    testid: 'shoppingBtn'
+}
 export default ShoppingBtn;
