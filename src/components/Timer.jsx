@@ -4,11 +4,11 @@ import Countdown from "react-countdown"
 
 const TimerComponent = styled.span`
     position: absolute;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #ff1c42;
     font-weight: 700;
     transform: rotate(15deg);
-    translate: -1.2em -0.6em;
+    translate: -1.4em -0.6em;
 `
 
 class Timer extends Component {

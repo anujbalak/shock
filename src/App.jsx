@@ -7,7 +7,12 @@ import ShoppingBtn from "./components/ShoppingBtn";
 import Timer from "./components/Timer";
 import { useEffect, useState } from "react";
 import Category from "./components/Category";
+import BeatLoader from 'react-spinners/BeatLoader'
 
+const override = {
+  display: "block",
+  margin: "1em 2em",
+}
 
 const Homepage = styled.div`
 
@@ -81,8 +86,8 @@ function App() {
     })
     .then(response => setCategories(response))
     .catch(error => console.error(error))
-
   }, [])
+
 
   return (
     <Homepage>
@@ -103,14 +108,20 @@ function App() {
       </FestivalSeason>
       <CategoriesContainer>
         <CtgrText>Explore By Categories</CtgrText>
-        {categories &&
+        {categories ?
           <Categories>
             {categories.map(category => {
               return (
                 <Category name={category.name} key={category.slug} page="home" url={category.url}/>
               )
             })}
-          </Categories>       
+          </Categories>
+          : 
+          <BeatLoader
+            loading={Boolean(!categories)}
+            color="#545ef3"
+            cssOverride={override}
+          />       
         }
       </CategoriesContainer>
     </Homepage>
