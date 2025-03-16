@@ -24,7 +24,11 @@ export const Button = styled.button`
 function ShoppingBtn(props) {
 
     return(
-        <Link to='shopping' state={props.categories}>
+        <Link 
+            to='shopping' 
+            state={{categories: props.categories, 
+                    products: props.products,
+                }}>
             <Button data-testid={props.tesid}>
                 Shop ➞
             </Button>

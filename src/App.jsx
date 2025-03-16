@@ -89,6 +89,15 @@ function App() {
     .catch(error => console.error(error))
   }, [])
 
+  const [products, setProducts] = useState(null);
+  const productsLink = "https://dummyjson.com/products"
+
+  useEffect(() => {
+    fetch(productsLink)
+    .then(response => response.json())
+    .then(response => setProducts(response))
+    .catch(error => console.log(error))
+  }, [])
 
   return (
     <Homepage>
@@ -98,7 +107,8 @@ function App() {
           {/* <ShoppingPageText>Shop the products those make you happy with discount and offers.</ShoppingPageText> */}
           <ShoppingBtn 
             testid="topShopBtn"
-            categories={categories}  
+            categories={categories}
+            products={products}  
           />
         </ShoppingPageContainer>
       </Top>
@@ -106,7 +116,7 @@ function App() {
         <FestivalImage src={festivalImg} alt="Festival" />
         <ShoppingPageContainer>
           <FestivalText>Celebrate this festival season with huge discounts on your favorite items.</FestivalText>
-          <ShoppingBtn />
+          <ShoppingBtn categories={categories} products={products}/>
           <Timer />
         </ShoppingPageContainer>
       </FestivalSeason>
