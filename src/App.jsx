@@ -8,6 +8,7 @@ import Timer from "./components/Timer";
 import { useEffect, useState } from "react";
 import Category from "./components/Category";
 import BeatLoader from 'react-spinners/BeatLoader'
+import Footer from "./components/Footer";
 
 const override = {
   display: "block",
@@ -124,6 +125,7 @@ function App() {
           />       
         }
       </CategoriesContainer>
+      <Footer />
     </Homepage>
   )
 }
