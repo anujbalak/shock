@@ -5,10 +5,21 @@ import PropTypes from "prop-types";
 import { Button } from "./ShoppingBtn";
 
 const Container = styled.div`
-
+    min-width: fit-content;
 `
 const Btn = styled(Button)`
     font-size: 1.3rem;
+`
+
+const ShopBtn = styled(Button)`
+    font-size: 1.2rem;
+    padding: 0.2em 0.5em;
+    flex-grow: auto;
+
+    &&:focus {
+        transform: scale(1.1);
+        background-color: rgb(42, 49, 150);
+    }
 `
 
 class Category extends Component {
@@ -30,9 +41,9 @@ class Category extends Component {
         } 
         return (
             <Container>
-                <Btn>
+                <ShopBtn>
                     {this.props.name}
-                </Btn>
+                </ShopBtn>
             </Container>
         );
     };

@@ -21,20 +21,15 @@ export const Button = styled.button`
     }
 `
 
-class ShoppingBtn extends Component {
-    constructor(props) {
-        super(props);
-    }
+function ShoppingBtn(props) {
 
-    render() {
-        return(
-            <Link to="shopping">
-                <Button data-testid={this.props.tesid}>
-                    Shop ➞
-                </Button>
-            </Link>
-        )
-    }
+    return(
+        <Link to='shopping' state={props.categories}>
+            <Button data-testid={props.tesid}>
+                Shop ➞
+            </Button>
+        </Link>
+    )
 }
 
 ShoppingBtn.PropTypes = {

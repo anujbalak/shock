@@ -96,7 +96,10 @@ function App() {
         <Header />
         <ShoppingPageContainer>
           {/* <ShoppingPageText>Shop the products those make you happy with discount and offers.</ShoppingPageText> */}
-          <ShoppingBtn testid="topShopBtn"/>
+          <ShoppingBtn 
+            testid="topShopBtn"
+            categories={categories}  
+          />
         </ShoppingPageContainer>
       </Top>
       <FestivalSeason>
