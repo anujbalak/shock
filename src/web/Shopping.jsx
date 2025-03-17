@@ -1,10 +1,11 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLocation } from "react-router-dom";
 import Category from "../components/Category";
 import Product from "../components/product/Product";
+import { HashLoader, ClimbingBoxLoader } from "react-spinners";
 
 const ShoppingContainer = styled.div`
 `
@@ -27,27 +28,97 @@ const Products = styled.section`
     max-width: 2000px;
 `
 
+const LoadingText = styled.span`
+    font-size: 1.2rem;
+`
+const LoadingStyle = {
+    color: "rgb(84, 91, 199)",
+    margin: "1em 2em",
+}
 
+const allProducts = {
+    name: 'All',
+    slug: 'all',
+    url: "https://dummyjson.com/products"
+}
 function Shopping() {
     const data  = useLocation();
-    const categories = data.state.categories;
-    const products = data.state.products.products;
-    console.log(products)
+    const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
+    const [products, setProducts] = useState(null)
+    const [categories, setCategories] = useState(null);
+
+    useEffect(() => {
+        if(data.state.categories) {
+            setCategories(data.state.categories)
+        } else {
+            fetch("https://dummyjson.com/products/categories")
+            .then(response => response.json())
+            .then(response => setCategories(response))
+            .catch(error => console.error(error))
+        }
+        if (Boolean(categories) === true) {
+            setCategories(categories => ([
+                allProducts,
+                ...categories,
+            ]))
+        }
+    }, [])
+
+    useEffect(() => {
+        if (data.state.products) {
+            setProducts(data.state.products.products)
+        } else {
+            fetch(productsApi)
+            .then(response => response.json())
+            .then(response => setProducts(response.products))
+            .catch(error => console.log(error))
+        }
+    }, [])
+
+    useEffect(() => {
+        fetch(productsApi)
+        .then(response => response.json())
+        .then(response => setProducts(response.products))
+        .catch(error => console.log(error))
+    }, [productsApi])
+
+    const handleCategoryClick = (e) => {
+        setProductsApi(e.target.dataset.url)
+    }
+
     return (
         <ShoppingContainer>
             <Header />
-            <Categories className="categories">
-                {categories.map(catgory => {
-                    return <Category key={catgory.slug} name={catgory.name} />
-                })}
-            </Categories>
-            <Products>
-                {
-                    products.map(product => {
-                        return <Product product={product} key={product.id}/>
-                    })
-                }
-            </Products>    
+            {Boolean(categories) === true ?
+                <Categories className="categories">
+                    
+                    {categories.map(catgory => {
+                        return <Category 
+                            key={catgory.slug} 
+                            name={catgory.name}
+                            url={catgory.url}
+                            clickHandler={handleCategoryClick}
+                        />
+                    })}
+                </Categories>
+                : <>
+                    <LoadingText>Categories are loading...</LoadingText>
+                    <HashLoader loading={Boolean(!categories)}/>
+                  </>
+            }
+            {Boolean(products) === true ?
+                <Products>
+                    {
+                        products.map(product => {
+                            return <Product product={product} key={product.id}/>
+                        })
+                    }
+                </Products>    
+                : <>
+                    <LoadingText>Products are loading...</LoadingText>
+                    <ClimbingBoxLoader loading={Boolean(!products)}/>
+                  </>
+            }
             <Footer />
         </ShoppingContainer>
     )

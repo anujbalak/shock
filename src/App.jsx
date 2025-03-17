@@ -88,6 +88,7 @@ function App() {
     .then(response => setCategories(response))
     .catch(error => console.error(error))
   }, [])
+  
 
   const [products, setProducts] = useState(null);
   const productsLink = "https://dummyjson.com/products"

@@ -25,8 +25,7 @@ const Rating = styled.span`
 const PriceContainer = styled.div`
     display: flex;
     gap: 0.4em;
-    align-items: center;
-    
+    align-items: center;    
 `
 const Price = styled.span`
     text-decoration: line-through;
@@ -37,6 +36,7 @@ const DiscountPercentage = styled.span`
 const DiscountedPrice = styled.span`
     display: flex;
     font-size: 2rem;
+    font-weight: 700;
 `
 
 const AddToCartBtn = styled(Button)`
@@ -45,7 +45,7 @@ const AddToCartBtn = styled(Button)`
 
 const Product = ({product}) => {
     
-    const price = (product.price * 85).toFixed();
+    const price = (product.price * 18).toFixed();
     const discountPercentage = product.discountPercentage;
     const discountedPrice = Math.floor((price * (100 - discountPercentage)) / 100)
     return(

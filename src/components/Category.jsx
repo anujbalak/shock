@@ -41,7 +41,7 @@ class Category extends Component {
         } 
         return (
             <Container>
-                <ShopBtn>
+                <ShopBtn data-url={this.props.url} onClick={this.props.clickHandler}>
                     {this.props.name}
                 </ShopBtn>
             </Container>
