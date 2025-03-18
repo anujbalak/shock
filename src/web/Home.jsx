@@ -1,14 +1,15 @@
 import styled from "styled-components"
-import Header from "./components/Header"
-import "./styles/app.css"
+import Header from "../components/Header"
+import "../styles/app.css"
 import backgroundImage from "/background/cart_bg.jpg"
 import festivalImg from "/background/festival.jpg";
-import ShoppingBtn from "./components/ShoppingBtn";
-import Timer from "./components/Timer";
+import ShoppingBtn from "../components/ShoppingBtn";
+import Timer from "../components/Timer";
 import { useEffect, useState } from "react";
-import Category from "./components/Category";
+import Category from "../components/Category";
 import BeatLoader from 'react-spinners/BeatLoader'
-import Footer from "./components/Footer";
+import Footer from "../components/Footer";
+import { useOutletContext } from "react-router-dom";
 
 const override = {
   display: "block",
@@ -74,46 +75,18 @@ const CtgrText = styled.h3`
   font-size: 1.6rem;
 `
 
-function App() {
+function Home() {
 
-  const [categories, setCategories] = useState([]);
-  const ctgrLink = "https://dummyjson.com/products/categories"
-
-  useEffect(() => {
-    fetch(ctgrLink)
-    .then(response => {
-
-      return response.json()
-    })
-    .then(response => setCategories(response))
-    .catch(error => console.error(error))
-  }, [])
-  
-
-  const [products, setProducts] = useState({});
-  const productsLink = "https://dummyjson.com/products"
-
-  useEffect(() => {
-    fetch(productsLink)
-    .then(response => response.json())
-    .then(response => setProducts(response))
-    .catch(error => console.log(error))
-  }, [])
-
-  const [cartItems, setCartItems] = useState([]);
+  const {cart, categories} = useOutletContext();
 
   return (
     <Homepage>
       <Top>
-        <Header cart={cartItems}/>
+        <Header cart={cart}/>
         <ShoppingPageContainer>
           {/* <ShoppingPageText>Shop the products those make you happy with discount and offers.</ShoppingPageText> */}
           <ShoppingBtn 
             testid="topShopBtn"
-            categories={categories}
-            products={products}
-            cart={cartItems}
-            setCart={setCartItems}  
           />
         </ShoppingPageContainer>
       </Top>
@@ -122,10 +95,7 @@ function App() {
         <ShoppingPageContainer>
           <FestivalText>Celebrate this festival season with huge discounts on your favorite items.</FestivalText>
           <ShoppingBtn 
-            categories={categories} 
-            products={products}
-            cart={cartItems}
-            setCart={setCartItems}
+            testid="festivalId"
           />
           <Timer />
         </ShoppingPageContainer>
@@ -141,8 +111,6 @@ function App() {
                   key={category.slug} 
                   page="home" 
                   url={category.url}
-                  cart={cartItems}
-                  setCart={cartItems}
                   />
               )
             })}
@@ -160,4 +128,4 @@ function App() {
   )
 }
 
-export default App
+export default Home;

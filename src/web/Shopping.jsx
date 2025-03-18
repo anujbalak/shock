@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 import Category from "../components/Category";
 import Product from "../components/product/Product";
 import { HashLoader, ClimbingBoxLoader } from "react-spinners";
+import { useOutletContext } from "react-router-dom";
+
 
 const ShoppingContainer = styled.div`
 `
@@ -30,6 +32,8 @@ const Products = styled.section`
 
 const LoadingText = styled.span`
     font-size: 1.2rem;
+    margin-top: 1em;
+    margin-left: 1em;
 `
 const LoadingStyle = {
     color: "rgb(84, 91, 199)",
@@ -42,49 +46,31 @@ const allProducts = {
     url: "https://dummyjson.com/products"
 }
 function Shopping() {
-    const data  = useLocation();
-    data.state.setCart(cart=> [
-        ...cart,
-        'apple'
-    ])
+    const {
+        cart, 
+        setCart, 
+        products, 
+        categories, 
+        setProducts,
+        setCategories,
+    } = useOutletContext(); 
+    
     const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
-    const [products, setProducts] = useState(null)
-    const [categories, setCategories] = useState(null);
 
     useEffect(() => {
-        if(data.state != null) {
-            if(Boolean(data.state.categories) === true) {
-                setCategories(data.state.categories)
-            }
-        } else {
+        if (Boolean(categories) == false){
             fetch("https://dummyjson.com/products/categories")
             .then(response => response.json())
             .then(response => setCategories(response))
-            .catch(error => console.error(error))
-        }
-    }, [])
-    
-    useEffect(() => {
-        if (categories != null) {
+            .catch(error => console.error(error));
+
             setCategories(categories => ([
                 allProducts,
                 ...categories,
-            ]))
+            ]));
         }
     }, [])
 
-    useEffect(() => {
-        if (data.state != null) {
-            if (Boolean(data.state.products) === true) {
-                setProducts(data.state.products.products)
-            }
-        } else {
-            fetch(productsApi)
-            .then(response => response.json())
-            .then(response => setProducts(response.products))
-            .catch(error => console.log(error))
-        }
-    }, [])
 
     useEffect(() => {
         fetch(productsApi)
@@ -96,11 +82,11 @@ function Shopping() {
     const handleCategoryClick = (e) => {
         setProductsApi(e.target.dataset.url)
     }
-
+    
     return (
         <ShoppingContainer>
-            <Header cart={data.state.cart}/>
-            {Boolean(categories) === true ?
+            <Header cart={cart}/>
+            {categories.length > 0 ?
                 <Categories className="categories">
                     
                     {categories.map(catgory => {
@@ -114,7 +100,7 @@ function Shopping() {
                 </Categories>
                 : <>
                     <LoadingText>Categories are loading...</LoadingText>
-                    <HashLoader loading={Boolean(!categories)}/>
+                    <HashLoader  cssOverride={LoadingStyle}/>
                   </>
             }
             {Boolean(products) === true ?
@@ -124,14 +110,14 @@ function Shopping() {
                             <Product 
                                 product={product} 
                                 key={product.id}
-                                setCart = {data.state.setCart}
+                                setCart={setCart}
                             />
                         ))
                     }
                 </Products>    
                 : <>
                     <LoadingText>Products are loading...</LoadingText>
-                    <ClimbingBoxLoader loading={Boolean(!products)}/>
+                    <ClimbingBoxLoader loading={Boolean(!products)} cssOverride={LoadingStyle}/>
                   </>
             }
             <Footer />

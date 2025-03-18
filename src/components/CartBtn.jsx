@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styled from "styled-components";
 import cartImage from "/icons/cart.svg"
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const CartBtn = styled.button`
     background-color: transparent;
@@ -28,10 +28,10 @@ class CartButton extends Component {
     constructor(props) {
         super(props)
     }
-
+    
     render() {
         return (
-            <Link to="/cart" state={this.props.cart}>
+            <Link to="/cart" >
                 <CartBtn >
                     <CartImg src={cartImage} alt=""/>
                 </CartBtn>

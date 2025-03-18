@@ -25,11 +25,6 @@ function ShoppingBtn(props) {
     return(
         <Link 
             to='/shopping' 
-            state={{categories: props.categories, 
-                    products: props.products,
-                    cart: props.cart,
-                    setCart: props.setCart,
-                }}
         >
             <Button data-testid={props.tesid}>
                 Shop ➞

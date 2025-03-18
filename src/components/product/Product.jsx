@@ -43,8 +43,6 @@ const AddToCartBtn = styled(Button)`
     font-size: 1.2rem;
 `
 
-
-
 const Product = ({product, setCart}) => {
     
     const handleAddButton = () => {
