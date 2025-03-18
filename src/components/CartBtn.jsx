@@ -12,6 +12,17 @@ const CartBtn = styled.button`
 const CartImg = styled.img`
     width: 30px;
 `
+const TotalItems = styled.span`
+    position: absolute;
+    text-decoration: none;
+    color: #e7e4d4;
+    background-color: tomato;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 2px 5px;
+    transform: translate(-60%, -30%);
+`
 
 class CartButton extends Component {
     constructor(props) {
@@ -20,10 +31,13 @@ class CartButton extends Component {
 
     render() {
         return (
-            <Link to="cart">
+            <Link to="/cart" state={this.props.cart}>
                 <CartBtn >
                     <CartImg src={cartImage} alt=""/>
                 </CartBtn>
+                <TotalItems>
+                    {this.props.cart.length}
+                </TotalItems>
             </Link>
         )
     }

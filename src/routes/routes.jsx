@@ -10,11 +10,11 @@ const routes = [
         errorElement: <ErrorElement />,
     },
     {
-        path: "cart",
+        path: "/cart",
         element: <Cart />,
     },
     {
-        path: "shopping",
+        path: "/shopping",
         element: <Shopping />
     }
 ]

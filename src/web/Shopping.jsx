@@ -43,20 +43,29 @@ const allProducts = {
 }
 function Shopping() {
     const data  = useLocation();
+    data.state.setCart(cart=> [
+        ...cart,
+        'apple'
+    ])
     const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
     const [products, setProducts] = useState(null)
     const [categories, setCategories] = useState(null);
 
     useEffect(() => {
-        if(data.state.categories) {
-            setCategories(data.state.categories)
+        if(data.state != null) {
+            if(Boolean(data.state.categories) === true) {
+                setCategories(data.state.categories)
+            }
         } else {
             fetch("https://dummyjson.com/products/categories")
             .then(response => response.json())
             .then(response => setCategories(response))
             .catch(error => console.error(error))
         }
-        if (Boolean(categories) === true) {
+    }, [])
+    
+    useEffect(() => {
+        if (categories != null) {
             setCategories(categories => ([
                 allProducts,
                 ...categories,
@@ -65,8 +74,10 @@ function Shopping() {
     }, [])
 
     useEffect(() => {
-        if (data.state.products) {
-            setProducts(data.state.products.products)
+        if (data.state != null) {
+            if (Boolean(data.state.products) === true) {
+                setProducts(data.state.products.products)
+            }
         } else {
             fetch(productsApi)
             .then(response => response.json())
@@ -88,7 +99,7 @@ function Shopping() {
 
     return (
         <ShoppingContainer>
-            <Header />
+            <Header cart={data.state.cart}/>
             {Boolean(categories) === true ?
                 <Categories className="categories">
                     
@@ -109,9 +120,13 @@ function Shopping() {
             {Boolean(products) === true ?
                 <Products>
                     {
-                        products.map(product => {
-                            return <Product product={product} key={product.id}/>
-                        })
+                        products.map(product => (
+                            <Product 
+                                product={product} 
+                                key={product.id}
+                                setCart = {data.state.setCart}
+                            />
+                        ))
                     }
                 </Products>    
                 : <>

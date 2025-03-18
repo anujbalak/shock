@@ -43,7 +43,16 @@ const AddToCartBtn = styled(Button)`
     font-size: 1.2rem;
 `
 
-const Product = ({product}) => {
+
+
+const Product = ({product, setCart}) => {
+    
+    const handleAddButton = () => {
+        setCart(cart => [
+            ...cart,
+            product,
+        ])
+    }
     
     const price = (product.price * 18).toFixed();
     const discountPercentage = product.discountPercentage;
@@ -58,7 +67,7 @@ const Product = ({product}) => {
                 <Price>₹{price}</Price>
                 <DiscountPercentage>{discountPercentage}%</DiscountPercentage>
             </PriceContainer>
-            <AddToCartBtn>
+            <AddToCartBtn onClick={handleAddButton}>
                 Add to Cart
             </AddToCartBtn>
         </ProjectContainer>    

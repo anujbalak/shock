@@ -76,7 +76,7 @@ const CtgrText = styled.h3`
 
 function App() {
 
-  const [categories, setCategories] = useState(null);
+  const [categories, setCategories] = useState([]);
   const ctgrLink = "https://dummyjson.com/products/categories"
 
   useEffect(() => {
@@ -90,7 +90,7 @@ function App() {
   }, [])
   
 
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState({});
   const productsLink = "https://dummyjson.com/products"
 
   useEffect(() => {
@@ -100,16 +100,20 @@ function App() {
     .catch(error => console.log(error))
   }, [])
 
+  const [cartItems, setCartItems] = useState([]);
+
   return (
     <Homepage>
       <Top>
-        <Header />
+        <Header cart={cartItems}/>
         <ShoppingPageContainer>
           {/* <ShoppingPageText>Shop the products those make you happy with discount and offers.</ShoppingPageText> */}
           <ShoppingBtn 
             testid="topShopBtn"
             categories={categories}
-            products={products}  
+            products={products}
+            cart={cartItems}
+            setCart={setCartItems}  
           />
         </ShoppingPageContainer>
       </Top>
@@ -117,7 +121,12 @@ function App() {
         <FestivalImage src={festivalImg} alt="Festival" />
         <ShoppingPageContainer>
           <FestivalText>Celebrate this festival season with huge discounts on your favorite items.</FestivalText>
-          <ShoppingBtn categories={categories} products={products}/>
+          <ShoppingBtn 
+            categories={categories} 
+            products={products}
+            cart={cartItems}
+            setCart={setCartItems}
+          />
           <Timer />
         </ShoppingPageContainer>
       </FestivalSeason>
@@ -127,7 +136,14 @@ function App() {
           <Categories>
             {categories.map(category => {
               return (
-                <Category name={category.name} key={category.slug} page="home" url={category.url}/>
+                <Category 
+                  name={category.name} 
+                  key={category.slug} 
+                  page="home" 
+                  url={category.url}
+                  cart={cartItems}
+                  setCart={cartItems}
+                  />
               )
             })}
           </Categories>

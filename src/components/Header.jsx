@@ -32,7 +32,7 @@ class Header extends Component {
                 <HeaderComponent>
                     <Title />
                     <Search />
-                    <CartButton />
+                    <CartButton cart={this.props.cart}/>
                 </HeaderComponent>
             </HeaderContainer>
         )

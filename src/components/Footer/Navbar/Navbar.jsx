@@ -13,12 +13,12 @@ const Navbar = () => {
                         Home
                     </FooterElement>
                 </Link>
-                <Link to="shopping">
+                <Link to="/shopping">
                     <FooterElement>
                         Shop
                     </FooterElement>
                 </Link>
-                <Link to="cart">
+                <Link to="/cart">
                     <FooterElement>
                         Cart
                     </FooterElement>
