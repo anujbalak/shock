@@ -35,9 +35,11 @@ class CartButton extends Component {
                 <CartBtn >
                     <CartImg src={cartImage} alt=""/>
                 </CartBtn>
-                <TotalItems>
-                    {this.props.cart.length}
-                </TotalItems>
+                {this.props.cart.length > 0 &&
+                    <TotalItems>
+                        {this.props.cart.length}
+                    </TotalItems>
+                }
             </Link>
         )
     }

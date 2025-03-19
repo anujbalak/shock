@@ -4,7 +4,7 @@ import Search from "./Search";
 import styled from "styled-components";
 import CartButton from "../components/CartBtn"
 
-const HeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
     background-color: rgb(253, 211, 171, 60%);
     backdrop-filter: blur(10px);
     height: max-content;
