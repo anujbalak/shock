@@ -64,7 +64,12 @@ const Product = ({product, page}) => {
     const handleRemove = (e) => {
         setCart(cart.filter(product => product.id != e.target.dataset.productid));
     }
+
+    const handlePurchase = (e) => {
+        handleRemove(e)
+    }
     
+
     const price = (product.price * 18).toFixed();
     const discountPercentage = product.discountPercentage;
     const discountedPrice = Math.floor((price * (100 - discountPercentage)) / 100)
@@ -81,7 +86,7 @@ const Product = ({product, page}) => {
             {page === 'cart' ?
                 <>
                     <RemoveButton as='img' src={binImg} onClick={handleRemove} data-productid={product.id}/>
-                    <DefaultButton>
+                    <DefaultButton onClick={handlePurchase} data-productid={product.id}>
                         Purchase
                     </DefaultButton>
                 </>
