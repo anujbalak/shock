@@ -1,8 +1,11 @@
 import styled from "styled-components"
-import PropTypes from "prop-types"
+import PropTypes, { func } from "prop-types"
 import { Button } from "../ShoppingBtn"
 import binImg from "/icons/close_bin.svg"
 import { useOutletContext } from "react-router-dom"
+import PriceComponent from "./Price"
+import PurchaseButton from "./PurchaseBtn"
+import AddToCartButton from "./AddToCart"
 const ProjectContainer = styled.div`
     background-color: #fbe1c3;
     display: ${page => page === 'shop' ? 'flex' : 'grid'};
@@ -24,40 +27,17 @@ const Rating = styled.span`
     
 `
 
-const PriceContainer = styled.div`
-    display: flex;
-    gap: 0.4em;
-    align-items: center;    
-`
-const Price = styled.span`
-    text-decoration: line-through;
-`
-const DiscountPercentage = styled.span`
-    color: #00a000;
-`
-const DiscountedPrice = styled.span`
-    display: flex;
-    font-size: 2rem;
-    font-weight: 700;
-`
-
-const DefaultButton = styled(Button)`
+export const DefaultButton = styled(Button)`
     font-size: 1.2rem;
     cursor: pointer;
+    width: 100%;
 `
 const RemoveButton = styled.button`
     width: 2em;
     cursor: pointer;
 `
 
-const Product = ({product, page}) => {
-    
-    const handleAddButton = () => {
-        setCart(cart => [
-            ...cart,
-            product,
-        ])
-    }
+const Product = ({product, page, handleClick}) => {
 
     const {cart, setCart} = useOutletContext()
 
@@ -65,36 +45,21 @@ const Product = ({product, page}) => {
         setCart(cart.filter(product => product.id != e.target.dataset.productid));
     }
 
-    const handlePurchase = (e) => {
-        handleRemove(e)
-    }
     
-
-    const price = (product.price * 18).toFixed();
-    const discountPercentage = product.discountPercentage;
-    const discountedPrice = Math.floor((price * (100 - discountPercentage)) / 100)
     return(
         <ProjectContainer page={page}>
-            <Thumbnail src={product.thumbnail} />
-            <Title>{product.title}</Title>
+            <Thumbnail src={product.thumbnail} onClick={handleClick} data-productid={product.id}/>
+            <Title onClick={handleClick} data-productid={product.id}>{product.title}</Title>
             <Rating>★ {product.rating}</Rating>
-            <PriceContainer>
-                <DiscountedPrice><span className="rupee">₹</span>{discountedPrice}</DiscountedPrice>
-                <Price>₹{price}</Price>
-                <DiscountPercentage>{discountPercentage}%</DiscountPercentage>
-            </PriceContainer>
+            <PriceComponent price={product.price} discountPercentage={product.discountPercentage}/>
             {page === 'cart' ?
                 <>
                     <RemoveButton as='img' src={binImg} onClick={handleRemove} data-productid={product.id}/>
-                    <DefaultButton onClick={handlePurchase} data-productid={product.id}>
-                        Purchase
-                    </DefaultButton>
+                    <PurchaseButton id={product.id} handleRemove={handleRemove} />
                 </>
                 : 
                 <>
-                    <DefaultButton onClick={handleAddButton}>
-                        Add to Cart
-                    </DefaultButton>
+                    <AddToCartButton setCart={setCart} product={product}/>
                     
                 </>
             }

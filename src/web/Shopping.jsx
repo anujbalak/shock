@@ -1,4 +1,4 @@
-import { Component, useEffect, useState } from "react";
+import { Component, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +7,7 @@ import Category from "../components/Category";
 import Product from "../components/product/Product";
 import { HashLoader, ClimbingBoxLoader } from "react-spinners";
 import { useOutletContext } from "react-router-dom";
+import ProductPage from "../components/product/ProductPage";
 
 
 const ShoppingContainer = styled.div`
@@ -54,8 +55,12 @@ function Shopping() {
         setProducts,
         setCategories,
     } = useOutletContext(); 
+
+    const productRef = useRef(null);
     
     const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
+
+    const [clickedProduct, setClickedProduct] = useState(null)
 
     useEffect(() => {
         if (Boolean(categories) == false){
@@ -82,9 +87,24 @@ function Shopping() {
     const handleCategoryClick = (e) => {
         setProductsApi(e.target.dataset.url)
     }
+
+    const showProductDetails = (e) => {
+        const product = products.find(product => product.id == e.target.dataset.productid)
+        setClickedProduct(product)
+        productRef.current.showModal();
+        productRef.current.focus();
+    }
+
+    const removeClickedProduct = () => {
+        productRef.current.close();
+        setClickedProduct(null);
+    }
     
     return (
         <ShoppingContainer>
+            {clickedProduct != null &&
+                <ProductPage product={clickedProduct} ref={productRef} handleClose={removeClickedProduct}/>
+            }
             <Header cart={cart}/>
             {categories.length > 0 ?
                 <Categories className="categories">
@@ -111,6 +131,7 @@ function Shopping() {
                                 product={product} 
                                 key={product.id}
                                 setCart={setCart}
+                                handleClick={showProductDetails}
                             />
                         ))
                     }

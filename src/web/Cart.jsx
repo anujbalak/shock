@@ -47,6 +47,9 @@ const EmptyCartText = styled.h2`
     align-self: baseline;
     justify-self: center;
 `
+const TotalCost = styled.span`
+    
+`
 
 function Cart()  {
     let navigate = useNavigate();
@@ -54,6 +57,10 @@ function Cart()  {
     const [showThankYou, setShowThankYou] = useState(false);
     const {cart, setCart} = useOutletContext();
     
+    let totalCost = 0;
+    for(let i = 0; i < cart.length; i++) {
+        totalCost += cart[i].price;
+    }
     const buyAllHandler = () => {
         setCart([])
         setShowThankYou(true)
@@ -83,14 +90,18 @@ function Cart()  {
                         Total Items {cart.length}
                     </CartCounter>
                     <CartItems>
-                        {cart.map(product => {
-                            return <Product key={product.id} product={product} page="cart"/>
-                        })
-
+                        {cart.map(
+                            product => {
+                                return <Product key={product.id} product={product} page="cart"/>
+                            })
                         }
                     </CartItems>
+                    <TotalCost>
+                        Total Cost 
+                        <span style={{color: 'tomato'}}>{totalCost}</span>
+                    </TotalCost>
                     <BuyAll onClick={buyAllHandler}>
-                        Purchase All
+                        Checkout
                     </BuyAll>
                     </>
                 </div>     
