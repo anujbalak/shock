@@ -46,7 +46,7 @@ const Flyout = ({ref, handleBtnClick}) => {
         setMessage(null);
         ref.current.close()
     }
-
+    
     return (
         <FlyoutDialog ref={ref} >
             <CloseButton onClick={handleClose}>

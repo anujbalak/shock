@@ -63,6 +63,7 @@ const Product = ({product, page, handleClick, notificationRef}) => {
                         setCart={setCart} 
                         product={product} 
                         notificationRef={notificationRef}
+                        handleRemove={handleRemove}
                     />
                     
                 </>
