@@ -47,7 +47,7 @@ const LoadingStyle = {
 const allProducts = {
     name: 'All',
     slug: 'all',
-    url: "https://dummyjson.com/products"
+    url: "https://dummyjson.com/products?limit=190"
 }
 const ShowUtil = styled.div`
     display: flex;
@@ -75,21 +75,6 @@ function Shopping() {
     const [productsApi, setProductsApi] = useState('https://dummyjson.com/products?limit=190');
 
     const [clickedProduct, setClickedProduct] = useState(null)
-
-    useEffect(() => {
-        if (Boolean(categories) == false){
-            fetch("https://dummyjson.com/products/categories")
-            .then(response => response.json())
-            .then(response => setCategories(response))
-            .catch(error => console.error(error));
-
-        }
-        setCategories(categories => ([
-            allProducts,
-            ...categories,
-        ]));
-    }, [])
-
 
     useEffect(() => {
         fetch(productsApi)
@@ -139,7 +124,12 @@ function Shopping() {
             <Header cart={cart}/>
             {categories.length > 0 ?
                 <Categories className="categories">
-                    
+                    <Category 
+                        key={allProducts.slug} 
+                        name={allProducts.name}
+                        url={allProducts.url}
+                        clickHandler={handleCategoryClick} 
+                    />
                     {categories.map(catgory => {
                         return <Category 
                             key={catgory.slug} 
