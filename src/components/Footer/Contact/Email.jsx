@@ -1,10 +1,11 @@
+import { Mail } from "lucide-react";
 import { FooterElement, FooterElementContainer } from "../../Footer"
 
 const Email = () => {
     return (
         <FooterElementContainer>
             <FooterElement>
-                shock@contact.fake.mail.com
+                <Mail />shock@contact.fake.mail.com
             </FooterElement>
         </FooterElementContainer>
     )

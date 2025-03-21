@@ -45,6 +45,9 @@ export const FooterElementContainer = styled.div`
     
 `
 export const FooterElement = styled.span`
+    display: flex;
+    gap: 5px;
+    align-items: center;
     color: currentColor;
     opacity: 70%;
     font-weight: ${props => props.$about ? 600 : 500};

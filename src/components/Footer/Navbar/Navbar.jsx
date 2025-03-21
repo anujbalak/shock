@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { FooterElement, FooterGroup, FooterGroupContainer, FooterGroupHeading } from "../../Footer"
+import { Home, Store, ShoppingCart } from "lucide-react";
 
 const Navbar = ({$about}) => {
     return (
@@ -10,17 +11,17 @@ const Navbar = ({$about}) => {
             <FooterGroup $about>
                 <Link to="/">
                     <FooterElement $about>
-                        Home
+                        <Home /> Home
                     </FooterElement>
                 </Link>
                 <Link to="/shopping">
                     <FooterElement $about>
-                        Shop
+                        <Store />Shop
                     </FooterElement>
                 </Link>
                 <Link to="/cart">
                     <FooterElement $about>
-                        Cart
+                        <ShoppingCart />Cart
                     </FooterElement>
                 </Link>
             </FooterGroup>

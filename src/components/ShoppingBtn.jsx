@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { Store } from "lucide-react";
 
 export const Button = styled.button`
     background-color: transparent;
@@ -27,7 +28,7 @@ function ShoppingBtn(props) {
             to='/shopping' 
         >
             <Button data-testid={props.tesid}>
-                Shop ➞
+                Shop <Store color="currentColor"/>
             </Button>
         </Link>
     )

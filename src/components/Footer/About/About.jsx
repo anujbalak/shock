@@ -1,3 +1,4 @@
+import { Github } from "lucide-react";
 import { FooterElement, FooterGroup, FooterGroupContainer, FooterGroupHeading } from "../../Footer"
 import { Link } from "react-router-dom";
 const About = () => {
@@ -13,7 +14,7 @@ const About = () => {
                     </FooterElement>
                 </Link>
                 <FooterElement as="a" href="https://github.com/anujbalak/shock/">
-                    Github
+                    <Github />Github
                 </FooterElement>
             </FooterGroup>
         </FooterGroupContainer>
