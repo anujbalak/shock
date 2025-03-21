@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom"
 import { FooterElement, FooterGroup, FooterGroupContainer, FooterGroupHeading } from "../../Footer"
 
-const Navbar = () => {
+const Navbar = ({$about}) => {
     return (
-        <FooterGroupContainer>
-            <FooterGroupHeading>
+        <FooterGroupContainer $about={$about}>
+            <FooterGroupHeading $about>
                 Jump to
             </FooterGroupHeading>
-            <FooterGroup>
+            <FooterGroup $about>
                 <Link to="/">
-                    <FooterElement>
+                    <FooterElement $about>
                         Home
                     </FooterElement>
                 </Link>
                 <Link to="/shopping">
-                    <FooterElement>
+                    <FooterElement $about>
                         Shop
                     </FooterElement>
                 </Link>
                 <Link to="/cart">
-                    <FooterElement>
+                    <FooterElement $about>
                         Cart
                     </FooterElement>
                 </Link>

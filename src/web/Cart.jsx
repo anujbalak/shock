@@ -15,7 +15,7 @@ const CartPage = styled.div`
     grid-template-rows: auto;
 `
 
-const Header = styled(HeaderContainer)`
+export const Header = styled(HeaderContainer)`
     display: flex;
     justify-content: center;
     height: 3em;
@@ -159,7 +159,7 @@ function Cart()  {
                 <EmptyCartText>Add Something!</EmptyCartText>
             }
             <Footer />
-        </CartPage>
+        </CartPage >
     )
 }
 

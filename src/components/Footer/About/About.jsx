@@ -7,7 +7,7 @@ const About = () => {
                 About us
             </FooterGroupHeading>
             <FooterGroup>
-                <Link to="about">
+                <Link to="/about">
                     <FooterElement>
                         About
                     </FooterElement>

@@ -7,7 +7,7 @@ import About from "./Footer/About/About";
 const FooterContainer = styled.div`
     padding: 2em;
     background-color: #434a62;
-    color: #cccbc4;
+    color: #e4e3e0;
     display: flex;
     justify-content: center;
 
@@ -24,6 +24,7 @@ export const FooterGroupContainer = styled.div`
 `
 export const FooterGroupHeading = styled.h3`
     font-size: 1.3rem;
+    color: currentColor;
 `
 export const FooterGroup = styled.div`
     display: flex;
@@ -31,12 +32,12 @@ export const FooterGroup = styled.div`
     gap: 1em;
     max-width: 300px;
     &&>a {
-        color: #cccbc4;
+        color: currentColor;
         text-decoration: none;
     }
     &&>a:hover, &&>a:focus {
      text-decoration: underline;
-     color: #ebebeb;
+     color: currentColor;
     }
 `
 
@@ -45,8 +46,10 @@ export const FooterElementContainer = styled.div`
 `
 export const FooterElement = styled.span`
     color: currentColor;
+    opacity: 70%;
+    font-weight: ${props => props.$about ? 600 : 500};
     &&:focus, &&:hover {
-        color: #ebebeb;
+        opacity: 100%;
     }
 `
 
