@@ -5,6 +5,8 @@ const useData = () => {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState(null);
     const [cart, setCart] = useState([])
+    const [message, setMessage] = useState(null);
+
     const categoryLink = "https://dummyjson.com/products/categories"
     const productsLink = "https://dummyjson.com/products"
 
@@ -32,6 +34,8 @@ const useData = () => {
         setProducts, 
         cart, 
         setCart,
+        message,
+        setMessage,
     }
 }
 
@@ -41,7 +45,9 @@ export default function Root() {
         products, 
         setProducts, 
         cart, 
-        setCart
+        setCart,
+        message,
+        setMessage,
     } = useData();
 
     return (
@@ -52,7 +58,9 @@ export default function Root() {
                     products, 
                     setProducts, 
                     cart, 
-                    setCart
+                    setCart,
+                    message,
+                    setMessage
                 }}/>
         </>
     )

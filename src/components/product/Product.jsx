@@ -37,7 +37,7 @@ const RemoveButton = styled.button`
     cursor: pointer;
 `
 
-const Product = ({product, page, handleClick}) => {
+const Product = ({product, page, handleClick, notificationRef}) => {
 
     const {cart, setCart} = useOutletContext()
 
@@ -59,7 +59,11 @@ const Product = ({product, page, handleClick}) => {
                 </>
                 : 
                 <>
-                    <AddToCartButton setCart={setCart} product={product}/>
+                    <AddToCartButton 
+                        setCart={setCart} 
+                        product={product} 
+                        notificationRef={notificationRef}
+                    />
                     
                 </>
             }

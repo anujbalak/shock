@@ -2,12 +2,13 @@ import { Component, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Category from "../components/Category";
 import Product from "../components/product/Product";
 import { HashLoader, ClimbingBoxLoader } from "react-spinners";
 import { useOutletContext } from "react-router-dom";
 import ProductPage from "../components/product/ProductPage";
+import Flyout from "../components/Flyout";
 
 
 const ShoppingContainer = styled.div`
@@ -46,6 +47,7 @@ const allProducts = {
     slug: 'all',
     url: "https://dummyjson.com/products"
 }
+
 function Shopping() {
     const {
         cart, 
@@ -54,9 +56,13 @@ function Shopping() {
         categories, 
         setProducts,
         setCategories,
+        message,
+        setMessage,
     } = useOutletContext(); 
 
+    const navigate = useNavigate();
     const productRef = useRef(null);
+    const notificationRef = useRef(null);
     
     const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
 
@@ -91,17 +97,34 @@ function Shopping() {
     const showProductDetails = (e) => {
         const product = products.find(product => product.id == e.target.dataset.productid)
         setClickedProduct(product)
-        productRef.current.showModal();
-        productRef.current.focus();
+        if (productRef.current !== null) {
+            productRef.current.showModal();
+            productRef.current.focus();
+        }
     }
 
     const removeClickedProduct = () => {
         productRef.current.close();
         setClickedProduct(null);
     }
+
+    const handlNotificationCartClick = () => {
+        navigate('/cart')
+        setMessage(null);
+        notificationRef.current.close();
+        if (clickedProduct != null) {
+            removeClickedProduct();
+        }
+    }
     
     return (
         <ShoppingContainer>
+            {message != null &&
+                <Flyout 
+                    ref={notificationRef} 
+                    handleBtnClick={handlNotificationCartClick}
+                />
+            }
             {clickedProduct != null &&
                 <ProductPage product={clickedProduct} ref={productRef} handleClose={removeClickedProduct}/>
             }
@@ -130,8 +153,8 @@ function Shopping() {
                             <Product 
                                 product={product} 
                                 key={product.id}
-                                setCart={setCart}
                                 handleClick={showProductDetails}
+                                notificationRef={notificationRef}
                             />
                         ))
                     }

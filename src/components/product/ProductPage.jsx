@@ -21,7 +21,7 @@ const ProductPageContainer = styled.dialog`
     gap: 1em;
     justify-content: space-evenly;
 `
-const CloseButton = styled.button`
+export const CloseButton = styled.button`
     all: unset;
     position: absolute;
     cursor: pointer;
@@ -67,6 +67,7 @@ const Rating = styled.span`
 export default function ProductPage({product, ref, handleClose}) {
     const {setCart} = useOutletContext()
 
+
     return (
         <ProductPageContainer ref={ref}>
             <Side>
@@ -80,7 +81,7 @@ export default function ProductPage({product, ref, handleClose}) {
             </Side>
             <Side>
                 <PriceComponent price={product.price} discountPercentage={product.discountPercentage} />
-                <PurchaseButton id={product.id}/>
+                <PurchaseButton id={product.id} />
                 <AddToCartButton product={product} setCart={setCart}/>
                 <Reviews>
                     <Rating>

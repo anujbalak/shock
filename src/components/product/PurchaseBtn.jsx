@@ -1,9 +1,19 @@
+import { useOutletContext } from "react-router-dom"
 import { DefaultButton } from "./Product"
 import PropTypes from "prop-types"
 
 export default function PurchaseButton({handleRemove, id}) {
+    const {message, setMessage} = useOutletContext();
+
     const handlePurchase = (e) => {
-        handleRemove(e)
+        setMessage('Thank you for your purchase!')
+        setTimeout(() => {
+            setMessage(null)
+        }, 3000)
+
+        if (Boolean(handleRemove) == true) {
+            handleRemove(e)
+        }
     }
     return (
         <>
