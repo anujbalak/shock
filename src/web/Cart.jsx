@@ -8,6 +8,7 @@ import { Button } from "../components/ShoppingBtn"
 import Footer from "../components/Footer"
 import ProductPage from "../components/product/ProductPage"
 import Flyout from "../components/Flyout"
+import { IndianRupee } from "lucide-react"
 
 const CartPage = styled.div`
     min-height: 100vh;
@@ -45,6 +46,7 @@ const DialogBox = styled.dialog`
     flex-wrap: wrap;
     color: rgb(30, 30, 30);
     border: none;
+    z-index: 2;
     `
 const ThankYouText = styled.h2`
     font-size: 2rem;
@@ -55,11 +57,12 @@ const EmptyCartText = styled.h2`
     align-self: baseline;
     justify-self: center;
 `
-const TotalCost = styled.span`
+export const TotalCounter = styled.span`
     font-size: 1.5rem;
     display: flex;
     gap: 10px;
     align-items: center;
+    flex: 100%;
 `
 
 function Cart()  {
@@ -146,10 +149,11 @@ function Cart()  {
                             })
                         }
                     </CartItems>
-                    <TotalCost>
+                    <TotalCounter>
                         Total Cost:  
+                        <IndianRupee />
                         <span style={{color: 'tomato', fontSize: '2rem', fontWeight: "600"}}>{totalCost}</span>
-                    </TotalCost>
+                    </TotalCounter>
                     <BuyAll onClick={buyAllHandler}>
                         Checkout
                     </BuyAll>

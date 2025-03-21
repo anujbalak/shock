@@ -11,6 +11,7 @@ import ProductPage from "../components/product/ProductPage";
 import Flyout from "../components/Flyout";
 import ShowMore from "../components/ShowMore";
 import ShowLess from "../components/ShowLess";
+import { TotalCounter } from "./Cart";
 
 
 const ShoppingContainer = styled.div`
@@ -39,6 +40,8 @@ const LoadingText = styled.span`
     margin-top: 1em;
     margin-left: 1em;
 `
+
+
 const LoadingStyle = {
     color: "rgb(84, 91, 199)",
     margin: "1em 2em",
@@ -146,6 +149,10 @@ function Shopping() {
             }
             {Boolean(products) === true ?
                 <Products>
+                    <TotalCounter>
+                        Total Items:  
+                        <span style={{color: '#858bef', fontSize: '2rem', fontWeight: "600"}}>{products.length}</span>
+                    </TotalCounter>
                     {
                         products.map((product, index) => {  
                             if (index  < productToLoad) {
