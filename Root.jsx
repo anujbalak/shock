@@ -8,7 +8,7 @@ const useData = () => {
     const [message, setMessage] = useState(null);
 
     const categoryLink = "https://dummyjson.com/products/categories"
-    const productsLink = "https://dummyjson.com/products"
+    const productsLink = "https://dummyjson.com/products?limit=190"
 
     useEffect(() => {
         const fetchData = async () => {

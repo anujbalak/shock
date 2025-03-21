@@ -9,6 +9,8 @@ import { HashLoader, ClimbingBoxLoader } from "react-spinners";
 import { useOutletContext } from "react-router-dom";
 import ProductPage from "../components/product/ProductPage";
 import Flyout from "../components/Flyout";
+import ShowMore from "../components/ShowMore";
+import ShowLess from "../components/ShowLess";
 
 
 const ShoppingContainer = styled.div`
@@ -47,11 +49,16 @@ const allProducts = {
     slug: 'all',
     url: "https://dummyjson.com/products"
 }
+const ShowUtil = styled.div`
+    display: flex;
+    flex: 100%;
+    margin-left: 5%;
+    gap: 2em;
+`
 
 function Shopping() {
     const {
         cart, 
-        setCart, 
         products, 
         categories, 
         setProducts,
@@ -64,7 +71,8 @@ function Shopping() {
     const productRef = useRef(null);
     const notificationRef = useRef(null);
     
-    const [productsApi, setProductsApi] = useState('https://dummyjson.com/products');
+    const [productToLoad, setProductToLoad] = useState(10);
+    const [productsApi, setProductsApi] = useState('https://dummyjson.com/products?limit=190');
 
     const [clickedProduct, setClickedProduct] = useState(null)
 
@@ -75,11 +83,11 @@ function Shopping() {
             .then(response => setCategories(response))
             .catch(error => console.error(error));
 
-            setCategories(categories => ([
-                allProducts,
-                ...categories,
-            ]));
         }
+        setCategories(categories => ([
+            allProducts,
+            ...categories,
+        ]));
     }, [])
 
 
@@ -149,15 +157,25 @@ function Shopping() {
             {Boolean(products) === true ?
                 <Products>
                     {
-                        products.map(product => (
-                            <Product 
-                                product={product} 
-                                key={product.id}
-                                handleClick={showProductDetails}
-                                notificationRef={notificationRef}
-                            />
-                        ))
+                        products.map((product, index) => {  
+                            if (index  < productToLoad) {
+                                return (<Product 
+                                    product={product} 
+                                    key={product.id}
+                                    handleClick={showProductDetails}
+                                    notificationRef={notificationRef}
+                                />)
+                            }
+                        })
                     }
+                    <ShowUtil>
+                        {productToLoad > 10 &&
+                            <ShowLess setProductLoadNumber={setProductToLoad}/>
+                        }
+                        {productToLoad < products.length &&
+                            <ShowMore setProductLoadNumber={setProductToLoad}/>
+                        }
+                    </ShowUtil>
                 </Products>    
                 : <>
                     <LoadingText>Products are loading...</LoadingText>
