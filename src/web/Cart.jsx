@@ -90,10 +90,10 @@ function Cart()  {
     const showProductDetails = (e) => {
         const product = cart.find(product => product.id == e.target.dataset.productid)
         setClickedProduct(product)
-        if (productRef.current !== null) {
+        setTimeout(() => {
             productRef.current.showModal();
             productRef.current.focus();
-        }
+        })
     }
 
     const removeClickedProduct = () => {

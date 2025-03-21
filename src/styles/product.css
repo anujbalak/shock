@@ -1,0 +1,31 @@
+.product-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 1em;
+}
+
+.product-dialog {
+    position: absolute;
+    width: 90%;
+    background-color: #f0d4bb;
+    border: none;
+    border-radius: 1em;
+    z-index: 1;
+    color: #111111;
+    gap: 1em;
+    will-change: transform, opacity;
+    animation: pop ease-in-out 0.4s;    
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        transform-origin: center;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+}

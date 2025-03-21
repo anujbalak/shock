@@ -15,6 +15,8 @@ import { TotalCounter } from "./Cart";
 
 
 const ShoppingContainer = styled.div`
+    display: grid;
+
 `
 const Categories = styled.div`
     margin: 0 1em;
@@ -93,10 +95,12 @@ function Shopping() {
     const showProductDetails = (e) => {
         const product = products.find(product => product.id == e.target.dataset.productid)
         setClickedProduct(product)
-        if (productRef.current !== null) {
-            productRef.current.showModal();
-            productRef.current.focus();
-        }
+        console.log(productRef)
+        productRef.current.showModal();
+        productRef.current.focus();
+        setTimeout(() => {
+            
+        })
     }
 
     const removeClickedProduct = () => {
@@ -121,9 +125,7 @@ function Shopping() {
                     handleBtnClick={handlNotificationCartClick}
                 />
             }
-            {clickedProduct != null &&
-                <ProductPage product={clickedProduct} ref={productRef} handleClose={removeClickedProduct}/>
-            }
+            <ProductPage product={clickedProduct} ref={productRef} handleClose={removeClickedProduct}/>
             <Header cart={cart}/>
             {categories.length > 0 ?
                 <Categories className="categories">

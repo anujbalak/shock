@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import ImageCarousel from "./ImageCarousel";
 import PropTypes from "prop-types";
 import { Star,SquareX } from "lucide-react";
@@ -7,20 +7,8 @@ import PurchaseButton from "./PurchaseBtn";
 import AddToCartButton from "./AddToCart";
 import { useOutletContext } from "react-router-dom";
 import Review from "./Review";
+import "../../styles/product.css"
 
-const ProductPageContainer = styled.dialog`
-    width: 90%;
-    place-self: center;
-    background-color: #f0d4bb;
-    border: none;
-    border-radius: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    z-index: 1;
-    color: #111111;
-    gap: 1em;
-    justify-content: space-evenly;
-`
 export const CloseButton = styled.button`
     all: unset;
     position: absolute;
@@ -67,31 +55,38 @@ const Rating = styled.span`
 export default function ProductPage({product, ref, handleClose}) {
     const {setCart} = useOutletContext()
 
-
     return (
-        <ProductPageContainer ref={ref}>
-            <Side>
-                <ImageCarousel arr={product.images}/>
-                <Title>
-                    {product.title}
-                </Title>
-                <Description>
-                    {product.description}
-                </Description>
-            </Side>
-            <Side>
-                <PriceComponent price={product.price} discountPercentage={product.discountPercentage} />
-                <PurchaseButton id={product.id} />
-                <AddToCartButton product={product} setCart={setCart}/>
-                <Reviews>
-                    <Rating>
-                        Rating: <Star fill="black"/> {product.rating}
-                    </Rating>
-                    {product.reviews.map(review => <Review review={review} key={review.reviewerName}/>)}
-                </Reviews>
-            </Side>
-            <CloseButton onClick={handleClose}><SquareX color='tomato' className="cancel" size='36px'/></CloseButton>
-        </ProductPageContainer>
+        <>
+        <dialog ref={ref} className="product-dialog">
+            <div className="product-details">
+                {product !== null &&
+                    <>
+                        <Side>
+                            <ImageCarousel arr={product.images} />
+                            <Title>
+                                {product.title}
+                            </Title>
+                            <Description>
+                                {product.description}
+                            </Description>
+                        </Side>
+                        <Side>
+                            <PriceComponent price={product.price} discountPercentage={product.discountPercentage} />
+                            <PurchaseButton id={product.id} />
+                            <AddToCartButton product={product} setCart={setCart} />
+                            <Reviews>
+                                <Rating>
+                                    Rating: <Star fill="black" /> {product.rating}
+                                </Rating>
+                                {product.reviews.map(review => <Review review={review} key={review.reviewerName} />)}
+                            </Reviews>
+                        </Side>
+                        <CloseButton onClick={handleClose}><SquareX color='tomato' className="cancel" size='36px' /></CloseButton>
+                    </>
+                }
+            </div>
+        </dialog>
+        </>
     )
 }
 
