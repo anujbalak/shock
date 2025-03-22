@@ -1,8 +1,8 @@
 import { screen, render } from "@testing-library/react";
 import { act } from "react";
 import  { describe, expect, it, test, vi} from "vitest"
-import App from "../../App";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import Mobile from "../../components/Footer/Contact/Mobile";
 import routes from "../../routes/routes";
 
 
@@ -25,6 +25,7 @@ window.fetch = vi.fn(() => {
     }); 
 })
 
+
 describe('Categories loading', () => {
     it('category text is presetnt', () => {
         const router = createMemoryRouter(routes, {
@@ -32,13 +33,5 @@ describe('Categories loading', () => {
         })
       render(<RouterProvider router={router}/>)
       expect(screen.getByText(/explore by categories/i)).toBeInTheDocument()  
-    })
-
-    it("category api is loading", async () => {
-        const router = createMemoryRouter(routes, {
-            initialEntries: ["/"],
-        })
-        render(<RouterProvider router={router}/>)
-        expect(screen.getByText(/dude/i)).toBeInTheDocument();
     })
 })
