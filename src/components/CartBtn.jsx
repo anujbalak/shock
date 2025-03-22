@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styled from "styled-components";
 import cartImage from "/icons/cart.svg"
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CartBtn = styled.button`
     background-color: transparent;

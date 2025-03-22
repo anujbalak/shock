@@ -1,4 +1,4 @@
-import styled, {keyframes} from "styled-components";
+import styled from "styled-components";
 import ImageCarousel from "./ImageCarousel";
 import PropTypes from "prop-types";
 import { Star,SquareX } from "lucide-react";

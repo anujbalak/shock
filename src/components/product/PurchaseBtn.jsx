@@ -3,7 +3,7 @@ import { DefaultButton } from "./Product"
 import PropTypes from "prop-types"
 
 export default function PurchaseButton({handleRemove, id}) {
-    const {message, setMessage} = useOutletContext();
+    const {setMessage} = useOutletContext();
 
     const handlePurchase = (e) => {
         setMessage('Thank you for your purchase!')

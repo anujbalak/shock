@@ -1,6 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import { act } from "react";
-import  { describe, expect, it, test, vi} from "vitest"
+import  { describe, expect, it, vi} from "vitest"
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import Mobile from "../../components/Footer/Contact/Mobile";
 import routes from "../../routes/routes";

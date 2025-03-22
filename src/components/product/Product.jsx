@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import PropTypes, { func } from "prop-types"
+import PropTypes from "prop-types"
 import { Button } from "../ShoppingBtn"
 import binImg from "/icons/close_bin.svg"
 import { useOutletContext } from "react-router-dom"

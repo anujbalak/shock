@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { Box, ChevronLeft, ChevronRight, CircleDashed, CircleDotDashed, Dot } from 'lucide-react'
 
 const ImageContainer = styled.div`

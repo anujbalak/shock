@@ -5,7 +5,6 @@ import backgroundImage from "/background/cart_bg.jpg"
 import festivalImg from "/background/festival.jpg";
 import ShoppingBtn from "../components/ShoppingBtn";
 import Timer from "../components/Timer";
-import { useEffect, useState } from "react";
 import Category from "../components/Category";
 import BeatLoader from 'react-spinners/BeatLoader'
 import Footer from "../components/Footer";

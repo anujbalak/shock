@@ -1,8 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Footer from "../../components/Footer";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
-import routes from "../../routes/routes";
 import Mobile from "../../components/Footer/Contact/Mobile";
 import Email from "../../components/Footer/Contact/Email";
 import About from "../../components/Footer/About/About";

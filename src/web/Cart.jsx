@@ -71,7 +71,7 @@ function Cart()  {
     const productRef = useRef(null);
     const notificationRef = useRef(null);
     const [showThankYou, setShowThankYou] = useState(false);
-    const {cart, setCart, message, setMessage} = useOutletContext();
+    const {cart, setCart, message} = useOutletContext();
     const [clickedProduct, setClickedProduct] = useState(null)
     
     let totalCost = 0;
