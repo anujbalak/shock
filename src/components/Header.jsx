@@ -8,6 +8,7 @@ export const HeaderContainer = styled.div`
     background-color: rgb(253, 211, 171, 60%);
     backdrop-filter: blur(10px);
     height: max-content;
+    width: 100%;
 `
 
 const HeaderComponent = styled.header`

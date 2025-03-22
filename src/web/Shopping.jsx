@@ -16,16 +16,16 @@ import { TotalCounter } from "./Cart";
 
 const ShoppingContainer = styled.div`
     display: grid;
-
+    width: 100%;
 `
 const Categories = styled.div`
-    margin: 0 1em;
     display: flex;
     overflow: auto;
     gap: 1em;
     align-items: center;
     width: 100%;
     padding: 1em 0;
+    place-self: center;
 `
 const Products = styled.section`
     min-height: 100vh;

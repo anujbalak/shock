@@ -2,7 +2,7 @@ import { Component, useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-    flex: 2 5 60%;
+    flex: 2 7 50%;
     
 `
 
@@ -39,7 +39,7 @@ class Search extends Component {
                     type="search" 
                     value={this.state.value} 
                     onChange={this.valueHandler}
-                    placeholder="...search"
+                    placeholder="...search, doesn't work!"
                 />
             </Container>        
         )

@@ -6,6 +6,13 @@ import { Button } from "./ShoppingBtn";
 
 const Container = styled.div`
     min-width: fit-content;
+
+    &.category:first-of-type {
+        margin-left: 1.5em;
+    }
+    &.category:last-of-type {
+        margin-right: 1.5em;
+    }
 `
 const Btn = styled(Button)`
     font-size: 1.3rem;
@@ -40,7 +47,7 @@ class Category extends Component {
             )
         } 
         return (
-            <Container>
+            <Container className="category">
                 <ShopBtn data-url={this.props.url} onClick={this.props.clickHandler}>
                     {this.props.name}
                 </ShopBtn>
