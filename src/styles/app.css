@@ -1,3 +1,4 @@
+
 :root {
     --text-color: 30, 30, 30;
     --border-color: 40, 40, 40;
@@ -9,7 +10,7 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Public Sans Variable', sans-serif, 'Courier New', Courier, monospace;
     background-color: #f8f5e6;
     color: rgb(var(--text-color));
     margin: 0;

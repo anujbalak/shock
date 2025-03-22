@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
+import '@fontsource-variable/public-sans'
 
 const useData = () => {
     const [categories, setCategories] = useState([]);
