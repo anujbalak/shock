@@ -94,7 +94,6 @@ function Shopping() {
     const showProductDetails = (e) => {
         const product = products.find(product => product.id == e.target.dataset.productid)
         setClickedProduct(product)
-        console.log(productRef)
         productRef.current.showModal();
         productRef.current.focus();
         setTimeout(() => {

@@ -1,4 +1,4 @@
-# [React + Vite](link)
+# [Shock](https://shockart.pages.dev/)
 
 A simple (fake) Shopping app
 
@@ -17,4 +17,4 @@ A simple (fake) Shopping app
 ## Support
 Report issues if you find.
 
-Try the website here [Shock](https://)
+Try the website here [Shock](https://shockart.pages.dev/)
